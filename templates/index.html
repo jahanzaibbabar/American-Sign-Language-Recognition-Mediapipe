@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="static/style.css" />
+
+    <title>Sign Language Recognizer</title>
+  </head>
+  <body>
+    <div class="parent-container">
+      <div class="child-container">
+        <h1>Sign Language Recognizer</h1>
+        <center>
+          
+          <form action="/run">
+            <button class="button">Start</button>
+          </form>
+        </center>
+      
+        <form action="#">
+          <textarea id='text'  name="text" rows="4" cols="40" placeholder="Recognized Text..."></textarea>
+          <!-- <input type="text" placeholder="enter text" /> -->
+        </form>
+
+        <center>
+          <form action="/stop">
+            <button class="button">Stop</button>
+          </form>
+        </center>
+
+
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      var text_area = document.getElementById("text");
+      
+      function updater() {
+        fetch('/data')
+        .then(response => response.text())
+        .then(text => (text_area.innerHTML = text));
+      }
+      
+      setInterval(updater, 2000);
+      </script>
+
+  </body>
+</html>
